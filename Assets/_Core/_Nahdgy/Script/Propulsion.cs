@@ -41,7 +41,7 @@ public class Propulsion : MonoBehaviour
 
     private void ForcePropulsion()
     {
-     if(Input.GetKey(KeyCode.Space) && _isGrounded)
+     if(Input.GetButton("ACTION") && _isGrounded)
      {
          if(_impulsionForce < _forceLimit)
          {
@@ -49,7 +49,7 @@ public class Propulsion : MonoBehaviour
          }  
      }    
 
-     if(Input.GetKeyUp(KeyCode.Space) && _isGrounded) 
+     if(Input.GetButtonUp("ACTION") && _isGrounded) 
      { 
         _jauge.SetActive(false);
         _rb.AddForce(transform.up * _impulsionForce, ForceMode.Impulse);
@@ -64,7 +64,7 @@ public class Propulsion : MonoBehaviour
     {
         
 
-        if (Input.GetKeyDown(KeyCode.S) && !_isGrounded) 
+        if (Input.GetButtonDown("ACTION") && !_isGrounded) 
         { 
             _rotationY += _impulsionRotation;
 
