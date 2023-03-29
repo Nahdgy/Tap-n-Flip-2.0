@@ -41,15 +41,15 @@ public class Propulsion : MonoBehaviour
 
     private void ForcePropulsion()
     {
-     if(Input.GetButton("ACTION") && _isGrounded)
+     if(Input.GetButton("ACTION") && _isGrounded) //touchCount > 0f
      {
          if(_impulsionForce < _forceLimit)
          {
             _impulsionForce += _incrementation * Time.deltaTime;
          }  
-     }    
+     }
 
-     if(Input.GetButtonUp("ACTION") && _isGrounded) 
+        if (Input. GetButtonUp("ACTION") && _isGrounded) //.touchCount > 0
      { 
         _jauge.SetActive(false);
         _rb.AddForce(transform.up * _impulsionForce, ForceMode.Impulse);
