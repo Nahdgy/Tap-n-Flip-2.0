@@ -10,7 +10,7 @@ public class Propulsion : MonoBehaviour
     [SerializeField] 
     private int _obj = 6;
     [SerializeField]
-    private bool _inputPressed, _isGrounded = true;
+    private bool _inputPressed, _isGrounded = true, _canGo = true;
     [SerializeField]
     private Rigidbody _rb;
     [SerializeField]
@@ -41,7 +41,7 @@ public class Propulsion : MonoBehaviour
 
     private void ForcePropulsion()
     {
-     if(Input.GetButton("ACTION") && _isGrounded) //touchCount > 0f
+     if(Input.GetButton("ACTION") && _isGrounded && _canGo) //touchCount > 0f
      {
          if(_impulsionForce < _forceLimit)
          {
@@ -49,7 +49,7 @@ public class Propulsion : MonoBehaviour
          }  
      }
 
-        if (Input. GetButtonUp("ACTION") && _isGrounded) //.touchCount > 0
+        if (Input. GetButtonUp("ACTION") && _isGrounded && _canGo) //.touchCount > 0
      { 
         _jauge.SetActive(false);
         _rb.AddForce(transform.up * _impulsionForce, ForceMode.Impulse);
@@ -85,6 +85,7 @@ public class Propulsion : MonoBehaviour
         {
             Debug.Log("CanStop");
             _rb.isKinematic = true;
+            _canGo = false;
         }
     }
 
