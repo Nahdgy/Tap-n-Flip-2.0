@@ -10,7 +10,7 @@ public class Propulsion : MonoBehaviour
     [SerializeField] 
     private int _obj = 6;
     [SerializeField]
-    private bool _inputPressed, _isGrounded = true;
+    private bool _inputPressed, _isGrounded = true, _canGo = true;
     [SerializeField]
     private Rigidbody _rb;
     [SerializeField]
@@ -36,20 +36,20 @@ public class Propulsion : MonoBehaviour
 
     private void GroundedCheck()
     {
-        _isGrounded = Physics.Raycast(transform.position, Vector3.down, _objHeight * .5f + .2f, _whatIsGround);
+        _isGrounded = Physics.Raycast(transform.position, Vector3.back, _objHeight * .5f + .2f, _whatIsGround);
     }
 
     private void ForcePropulsion()
     {
-     if(Input.GetKey(KeyCode.Space) && _isGrounded)
+     if(Input.GetButton("ACTION") && _isGrounded && _canGo) //touchCount > 0f
      {
          if(_impulsionForce < _forceLimit)
          {
             _impulsionForce += _incrementation * Time.deltaTime;
          }  
-     }    
+     }
 
-     if(Input.GetKeyUp(KeyCode.Space) && _isGrounded) 
+        if (Input. GetButtonUp("ACTION") && _isGrounded && _canGo) //.touchCount > 0
      { 
         _jauge.SetActive(false);
         _rb.AddForce(transform.up * _impulsionForce, ForceMode.Impulse);
@@ -64,7 +64,7 @@ public class Propulsion : MonoBehaviour
     {
         
 
-        if (Input.GetKeyDown(KeyCode.S) && !_isGrounded) 
+        if (Input.GetButtonDown("ACTION") && !_isGrounded) 
         { 
             _rotationY += _impulsionRotation;
 
@@ -85,6 +85,7 @@ public class Propulsion : MonoBehaviour
         {
             Debug.Log("CanStop");
             _rb.isKinematic = true;
+            _canGo = false;
         }
     }
 
