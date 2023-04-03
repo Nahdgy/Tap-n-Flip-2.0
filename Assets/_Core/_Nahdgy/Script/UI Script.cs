@@ -30,7 +30,7 @@ public class UIScript : MonoBehaviour
     }
     public void RandomButton()
     {
-        int index = Random.Range(1, 5);
+        int index = Random.Range(1,4);
         SceneManager.LoadScene(index);
       
     }

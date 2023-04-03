@@ -11,22 +11,23 @@ public class WinningCheck : MonoBehaviour
     [SerializeField] 
     private Rigidbody _obj;
     [SerializeField]
-    private Animator _anim;
-    [SerializeField]
-    private string _animName;
-    [SerializeField]
     private AudioSource _sourceAudio;
     [SerializeField]
-    private AudioClip _songWinning;
+    private AudioClip _LoseSong;
+
+    public Propulsion _control;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == _winningLayer) 
+        if (other.gameObject.layer == _winningLayer)
         {
+            Debug.Log("Win");
             _txt.SetActive(true);
             _obj.freezeRotation = true;
+            _sourceAudio.PlayOneShot(_LoseSong);
+            _control.good = true;
         }
-        
     }
+
     private void Points(int _pts)
     {
 
