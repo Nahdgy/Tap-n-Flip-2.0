@@ -24,10 +24,12 @@ public class WinningCheck : MonoBehaviour
         {
             _txt.SetActive(true);
             _obj.freezeRotation = true;
-
-       
-
         }
         
+    }
+    private void Points(int _pts)
+    {
+
+
     }
 }

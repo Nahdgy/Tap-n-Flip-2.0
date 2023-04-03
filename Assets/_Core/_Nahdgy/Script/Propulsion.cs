@@ -36,7 +36,7 @@ public class Propulsion : MonoBehaviour
 
     private void GroundedCheck()
     {
-        _isGrounded = Physics.Raycast(transform.position, Vector3.down, _objHeight * .5f + .2f, _whatIsGround);
+        _isGrounded = Physics.Raycast(transform.position, Vector3.back, _objHeight * .5f + .2f, _whatIsGround);
     }
 
     private void ForcePropulsion()
